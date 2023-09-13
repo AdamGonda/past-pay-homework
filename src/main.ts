@@ -3,10 +3,7 @@ import { StringifiedNumber } from './codec';
 import { isLeft } from 'fp-ts/lib/Either';
 import { PathReporter } from 'io-ts/PathReporter';
 
-const host = process.env['HOST'] ?? 'localhost';
-const port = process.env['PORT'] ? Number(process.env['PORT']) : 3000;
-
-const app = express();
+export const app = express();
 
 interface SimpleResponse {
   a?: string;
@@ -52,7 +49,3 @@ app.get(
   '/divide',
   withNumberValidation((a, b) => a / b)
 );
-
-app.listen(port, host, () => {
-  console.log(`[ ready ] http://${host}:${port}`);
-});
